@@ -1,0 +1,25 @@
+<%= form_for(@exhibidor) do |f| %>
+  <% if @exhibidor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exhibidor.errors.count, "error") %> prohibited this exhibidor from being saved:</h2>
+
+      <ul>
+      <% @exhibidor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :channel %><br />
+    <%= f.text_field :channel %>
+  </div>
+  <div class="field">
+    <%= f.label :ubicacion %><br />
+    <%= f.text_field :ubicacion %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

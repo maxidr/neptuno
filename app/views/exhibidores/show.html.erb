@@ -1,0 +1,29 @@
+<div id="header">HEADER</div>
+<div id="contenido">
+  <h1>Exhibidor</h1>
+  <ol></ol>
+</div>
+
+<div id="footer">Footer</div>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+  // <![CDATA[
+ 			$(document).ready(function(){
+ 				var client = new Faye.Client('<%= @pubsub_url %>');
+ 				var mensajes = [];
+
+ 				client.subscribe('<%= @exhibidor.channel %>', function(message) {
+			    var cant_mensajes = mensajes.unshift(message.ja);
+ 				  if ( cant_mensajes > 5 ) { mensajes.pop(); }
+ 				  //mensajes.push(message.text, mensajes);
+ 				  $("#contenido ol").empty();
+ 				  $.each(mensajes, function(index, value){
+            $("#contenido ol").append('<li>' + value + '</li>');
+ 				  });
+
+				});
+
+ 			});
+  // ]]>
+</script>
+

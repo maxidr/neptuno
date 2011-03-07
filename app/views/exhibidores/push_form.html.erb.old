@@ -1,0 +1,18 @@
+<% if flash[:notice] %>
+<p><%= flash[:notice] %></p>
+<% end %>
+
+<%= form_for @mensaje, :url => { :action => "push" }   do |f| %>
+  <div class="field">
+    <%= f.label :canal %><br />
+    <%= f.text_field :canal %>
+  </div>
+  <div class="field">
+    <%= f.label :mensaje %><br />
+    <%= f.text_field :contenido %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

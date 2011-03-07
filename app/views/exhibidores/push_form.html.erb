@@ -1,0 +1,50 @@
+<h1>Publicar</h1>
+<form id="valores">
+  <input type="text" name="msg" value="" id="msg" />
+  <input type="text" name="persona" value="" id="persona" />
+  <input type="text" name="puesto" value="" id="puesto" />
+</form>
+
+
+En:
+
+<select name="router" id="router">
+  <% Exhibidor.all.each do |exhibidor| %>
+    <option value="<%= exhibidor.channel %>"><%= exhibidor.channel %></option>
+  <% end %>
+</select>
+
+<input type="button" name="Publicar" value="Publicar" id="btn_publicar" />
+
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+
+// <![CDATA[
+		$(document).ready(function(){
+			var client = new Faye.Client('<%= @pubsub_url %>');
+
+			$("#msg").focus().keypress(function(e){
+			  if( e.which == 13 ){
+			    e.preventDefault();
+			    $("#btn_publicar").click();
+			  }
+			});
+
+			function publish(msg){
+				client.publish($("#router").val(), {
+					text: msg,
+					ja: msg
+				});
+			}
+
+			$("#btn_publicar").click(function(event){
+				event.preventDefault();
+				if( $.trim($("#msg").val()) != '' ) publish($("#msg").val());
+				$("#msg").val("");
+			});
+
+		});
+// ]]>
+
+</script>
+
