@@ -1,18 +1,29 @@
 <h1>Publicar</h1>
 <form id="valores">
-  <input type="text" name="msg" value="" id="msg" />
-  <input type="text" name="persona" value="" id="persona" />
-  <input type="text" name="puesto" value="" id="puesto" />
+  <div class="field">
+    <label for="msg">Nombre</label> <br/>
+    <input type="text" name="persona" value="" id="persona" />
+  </div>
+  <div class="field">
+    <label for="msg">Puesto de atención</label><br/>
+    <input type="text" name="puesto" value="" id="puesto" />
+  </div>
+  <div class="field">
+    <label for="msg">Canal</label><br/>
+    <input type="text" name="canal" value="" id="canal" />
+  </div>
 </form>
 
-
+<br/>
+<!--
 En:
 
 <select name="router" id="router">
   <% Exhibidor.all.each do |exhibidor| %>
-    <option value="<%= exhibidor.channel %>"><%= exhibidor.channel %></option>
+    <option value="<%= exhibidor.canal %>"><%= exhibidor.canal %></option>
   <% end %>
 </select>
+-->
 
 <input type="button" name="Publicar" value="Publicar" id="btn_publicar" />
 
@@ -23,24 +34,31 @@ En:
 		$(document).ready(function(){
 			var client = new Faye.Client('<%= @pubsub_url %>');
 
-			$("#msg").focus().keypress(function(e){
+			$(":input").focus().keypress(function(e){
 			  if( e.which == 13 ){
 			    e.preventDefault();
+			    $(":input").first().focus();
 			    $("#btn_publicar").click();
 			  }
 			});
 
-			function publish(msg){
-				client.publish($("#router").val(), {
-					text: msg,
-					ja: msg
+  		function publish(info){
+				client.publish($("#canal").val(), {
+					info: info
 				});
 			}
 
 			$("#btn_publicar").click(function(event){
 				event.preventDefault();
-				if( $.trim($("#msg").val()) != '' ) publish($("#msg").val());
-				$("#msg").val("");
+				var persona = $.trim($("#persona").val());
+				var puesto = $.trim($("#puesto").val());
+				if( persona != '' && puesto != '' ){
+				  publish({ 'puesto':puesto, 'persona':persona});
+				  $("#puesto").val("");
+				  $("#persona").val("");
+				}else{
+				  alert("El puesto y la persona son obligatorios");
+				}
 			});
 
 		});

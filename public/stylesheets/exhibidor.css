@@ -1,10 +1,110 @@
-#msg ol{
-  list-style: none;
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  border: 0 none;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
   margin: 0;
+  outline: 0 none;
   padding: 0;
+  vertical-align: baseline;
 }
 
-#msg ol li{
-  border: 1px solid green;
+body{
+  background-color: #262626;
+}
+
+#header{
+  background: url("/images/white-overlays.png") repeat scroll 0 -128px #444444;
+  border-bottom: 1px solid #303030;
+  border-top: 1px solid #999999;
+/*  height: 30px;*/
+}
+
+#header div.titulo{
+  background: url("/images/white-overlays.png") repeat scroll 0 0 #262626;
+  border-color: -moz-use-text-color rgba(0, 0, 0, 0.125) #111111 rgba(255, 255, 255, 0.1);
+  border-style: none solid solid;
+  border-width: medium 1px 1px;
+  color: #EEEEEE;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0.4em 0 0.33em;
+  padding: 0.6em 1.25em;
+  text-shadow: 0 -1px 0 black;
+  width: auto;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#header .exhibidor{
+  font-family: Inconsolata,Monaco,"Courier New",Courier,mono;
+  font-size: 0.8em;
+/*  letter-spacing: -0.1em;*/
+  color: #AAAAAA;
+  float: right;
+  display: block;
+  padding: 13px 10px;
+}
+
+#contenido{
+  background: none repeat scroll 0 0 #EEEEEE;
+  border-bottom: 1px solid #DDDDDD;
+  border-top: 1px solid white;
+/*  padding: 1em 0;*/
+  text-align: center;
+}
+
+#contenido .llamado h2{
+  display: inline-block;
+  color: #2D3037;
+  font: 145px Helvetica, Monaco;
+  font-weight: bold;
+  position: relative;
+  text-shadow: 2px 2px 2px #111;
+  font-size: 3em;
+  margin: 0.5em;
+}
+
+#contenido .llamado p{
+  color: #444444;
+/*  color: #BBB;*/
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 0.25em;
+/*  text-shadow: 0 1px #EEEEEE;*/
+  text-shadow: 0 1px white;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1em;
+}
+
+#contenido ol{
+  background: none repeat scroll 0 0 #CCCCCC;
+  border-top: 1px solid #888888;
+}
+
+#contenido ol li{
+  border-top: 2px solid #BBBBBB;
+  border-bottom: 1px solid #DDDDDD;
+  color: #444444;
+  font-size: 0.85em;
+  font-weight: bold;
+  letter-spacing: 0.25em;
+/*  margin-bottom: 1.25em;*/
+  padding-top: 1.5em;
+  padding-bottom: 1.25em;
+  text-shadow: 0 1px #EEEEEE;
+  text-transform: uppercase;
+}
+
+#contenido ol li h2{
+  padding-bottom: 5px;
+  font-size: 1.3em;
+}
+
+#contenido ol li p{
+
 }
 

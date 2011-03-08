@@ -1,26 +1,68 @@
-<div id="header">HEADER</div>
-<div id="contenido">
-  <h1>Exhibidor</h1>
-  <ol></ol>
+<div id="header">
+<!--  <div class="exhibidor">Exhibidor #<%= @exhibidor.id %></div> -->
+  <div class="titulo">Laboratorio</div>
 </div>
-
-<div id="footer">Footer</div>
+<div id="contenido">
+  <div class="llamado">
+    <h2></h2>
+    <p></p>
+  </div>
+  <ol>
+  <!--
+    <li>
+      <h2>Miguel Lopez</h2>
+      <p>Puesto: 5</p>
+    </li>
+    <li>
+      <h2>Norberto Miguez</h2>
+      <p>Puesto: 2</p>
+    </li>
+    <li>
+      <h2>Miguel Lopez</h2>
+      <p>Puesto: 5</p>
+    </li>
+    <li>
+      <h2>Norberto Miguez</h2>
+      <p>Puesto: 2</p>
+    </li>
+  -->
+  </ol>
+</div>
+<div id="footer"></div>
 
 <script type="text/javascript" language="javascript" charset="utf-8">
   // <![CDATA[
+
  			$(document).ready(function(){
+ 			  $("#contenido").hide();
+
  				var client = new Faye.Client('<%= @pubsub_url %>');
  				var mensajes = [];
 
- 				client.subscribe('<%= @exhibidor.channel %>', function(message) {
-			    var cant_mensajes = mensajes.unshift(message.ja);
- 				  if ( cant_mensajes > 5 ) { mensajes.pop(); }
- 				  //mensajes.push(message.text, mensajes);
- 				  $("#contenido ol").empty();
- 				  $.each(mensajes, function(index, value){
-            $("#contenido ol").append('<li>' + value + '</li>');
- 				  });
+ 				client.subscribe('<%= @exhibidor.canal %>/<%= @exhibidor.id %>', function(message) {
+ 				  var mensaje = message.info;
+ 				  var cant_mensajes = mensajes.unshift(message.info);
 
+ 				  if( cant_mensajes == 1 ){
+ 				    $("div.llamado h2").text(mensaje.persona);
+            $("div.llamado p").text("Puesto: " + mensaje.puesto);
+ 				    $("#contenido").slideDown();
+ 				  }else{
+			      //mensajes.push(message.info);
+			      //var cant_mensajes = mensajes.length;
+   				  if ( cant_mensajes > 6 ) {
+   				    mensajes.pop();
+   				    $("ol li").last().remove();
+   				  }
+   				  var value = mensajes[1];
+            $("#contenido ol").prepend("<li><h2>" + value.persona + "</h2><p>Puesto: " + value.puesto + "</p></li>");
+
+            $("div.llamado").fadeOut('fast', function(){
+              $("div.llamado h2").text(mensaje.persona);
+              $("div.llamado p").text("Puesto: " + mensaje.puesto);
+              $("div.llamado").fadeIn();
+            });
+          }
 				});
 
  			});

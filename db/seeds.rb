@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+Exhibidor.create(:canal => '/hospital/laboratorio_a') # exh #1
+Exhibidor.create(:canal => '/hospital/laboratorio_a') # exh #2
+Exhibidor.create(:canal => '/hospital/laboratorio_b') # exh #3
+
