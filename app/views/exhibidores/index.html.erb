@@ -5,7 +5,6 @@
     <tr>
       <th>#</th>
       <th>Canal</th>
-      <th>Ubicación</th>
       <th></th>
     </tr>
   </thead>
@@ -13,8 +12,7 @@
   <% @exhibidores.each do |exhibidor| %>
     <tr>
       <td><%= exhibidor.id %></td>
-      <td><%= exhibidor.channel %></td>
-      <td><%= exhibidor.ubicacion %></td>
+      <td><%= exhibidor.canal %></td>
       <td>
         <%= link_to 'Ver', exhibidor %>
         <%= link_to 'Editar', edit_exhibidor_path(exhibidor) %>
