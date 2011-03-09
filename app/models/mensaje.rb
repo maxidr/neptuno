@@ -1,6 +1,6 @@
 class Mensaje < ActiveResource::Base
 #  include ActiveModel::Validations
-  self.site = "http://localhost:4000/"
+  self.site = ENV['PUB_SUB_URL'] || "http://localhost:4000/sub"
 
   attr_accessor :contenido, :canal
 

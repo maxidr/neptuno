@@ -4,7 +4,8 @@ class ExhibidoresController < ApplicationController
 
   # GET /push
   def push_form
-    @pubsub_url = "http://localhost:4000/sub"
+    # TODO: Centralizar esta información
+    @pubsub_url = ENV['PUB_SUB_URL'] || "http://localhost:4000/sub"
 
     respond_to do |format|
       format.html { render :layout => 'pusher' }
@@ -35,7 +36,7 @@ class ExhibidoresController < ApplicationController
   # GET /exhibidores/1.xml
   def show
     @exhibidor = Exhibidor.find(params[:id])
-    @pubsub_url = "http://localhost:4000/sub"
+    @pubsub_url = ENV['PUB_SUB_URL'] || "http://localhost:4000/sub"
     respond_to do |format|
       format.html { render :layout => 'pantalla' }
       format.xml  { render :xml => @exhibidor }
